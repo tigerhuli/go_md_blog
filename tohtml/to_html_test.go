@@ -1,6 +1,9 @@
 package tohtml
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestToHtml(t *testing.T) {
 	md_path := `/data/repos/go_md_blog/input/hello world.md`
@@ -17,5 +20,6 @@ func TestReplaceHtmlImage(t *testing.T) {
 	a --&gt; b
 	</div><script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script><script>mermaid.initialize({startOnLoad: true});</script>`
 
-	replaceHtmlImage([]byte(content))
+	new_content := replaceHtmlImage("./input/test/hello world.md", []byte(content))
+	fmt.Println(string(new_content))
 }

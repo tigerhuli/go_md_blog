@@ -7,10 +7,21 @@ import (
 	"strings"
 
 	"log"
+
+	"github.com/robfig/cron/v3"
 )
 
+// Init ...
+func Init() {
+	job := cron.New()
+	job.AddFunc("* * * * *", syncMd)
+	job.AddFunc("* * * * *", func() { fmt.Println("test ...") })
+	job.Start()
+}
+
+// syncMd 同步markdown到html
 func syncMd() {
-	input_dir := "../input"
+	input_dir := "./input"
 	md_paths, err := getMdPaths(input_dir)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -21,8 +32,7 @@ func syncMd() {
 	for _, md_path := range md_paths {
 		html_path := strings.TrimPrefix(md_path, input_dir)
 		html_path = strings.Split(html_path, ".")[0]
-		html_path = fmt.Sprintf("../output%s.html", html_path)
-		fmt.Println(html_path)
+		html_path = fmt.Sprintf("./output%s.html", html_path)
 		tohtml.ToHTML(md_path, html_path)
 	}
 }

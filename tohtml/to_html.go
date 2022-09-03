@@ -38,7 +38,7 @@ func ToHTML(md_path, html_path string) {
 	}
 
 	html_content := buf.Bytes()
-	html_content = replaceHtmlImage(html_content)
+	html_content = replaceHtmlImage(md_path, html_content)
 	err = ioutil.WriteFile(html_path, html_content, 0666)
 	if err != nil {
 		log.Println(err.Error())
@@ -46,7 +46,7 @@ func ToHTML(md_path, html_path string) {
 }
 
 // replaceHtmlImage 替换html中的image TODO: 考虑图片路径的相对性
-func replaceHtmlImage(content []byte) []byte {
+func replaceHtmlImage(md_path string, content []byte) []byte {
 	image_reg := regexp.MustCompile(`<img[\s\S]+?>`)
 	matches := image_reg.FindAll(content, -1)
 
@@ -56,16 +56,18 @@ func replaceHtmlImage(content []byte) []byte {
 		if _, ok := tag_map[tag]; ok {
 			continue
 		}
-		fmt.Println(tag)
+
 		path_reg := regexp.MustCompile(`(src=")(.*?)(")`)
 		sub_matches := path_reg.FindSubmatch(match)
 		if len(sub_matches) < 4 {
 			continue
 		}
-		path := string(sub_matches[2])
-		fmt.Println(path)
 
-		new_path := fmt.Sprintf(`http://tigerhuli.com/image/%s`, path)
+		path := string(sub_matches[2])
+		dir := filepath.Dir(md_path)
+		new_path := filepath.Join(dir, path) // 处理相对路径
+		new_path = strings.TrimPrefix(new_path, "input/")
+		new_path = fmt.Sprintf(`http://tigerhuli.com/image/%s`, new_path)
 		new_tag := strings.Replace(tag, path, new_path, 1)
 
 		tag_map[tag] = new_tag
