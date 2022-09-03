@@ -36,6 +36,8 @@
 
 最后选择使用第二种方式, 因为第一种方式浏览器打开速度有点慢. 在选择第二种方式后, 最终使用goldmark作为转换工具, 主要是因为goldmark有插件能够支持解析mermaid.
 
+使用gin的模板嵌入html时, 有一个非常棘手的问题, 就是嵌入的内容被加上了双引号. 后来搜索资料得知这是一种防注入的策略, 参考[Gin之渲染HTML模板](https://blog.csdn.net/weixin_52690231/article/details/125021658)中的内容解决了问题.
+
 ## 拉取图片
 
 - status: done
