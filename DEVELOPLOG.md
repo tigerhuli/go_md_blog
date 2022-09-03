@@ -7,6 +7,8 @@
 
 在开发的过程中, 发现chrome会发送一个`GET /favicon.ico"`的请求, 通过搜索后才知道这个请求用来[设置地址栏的图标的](https://blog.csdn.net/allway2/article/details/109115253).
 
+经过试验发现, favicon并非每次都会拉取, chrome会对其进行缓存. favicon的设置参考[How to Add a Favicon to your Site](https://www.w3.org/2005/10/howto-favicon)
+
 ## markdown转html
 
 - status: todo
