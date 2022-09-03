@@ -6,5 +6,6 @@ import "github.com/gin-gonic/gin"
 func Init() *gin.Engine {
 	root := gin.Default()
 	root.GET("/image/:name", image)
+	// root.Static("/image", "./input")
 	return root
 }
