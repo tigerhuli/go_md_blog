@@ -1,9 +1,18 @@
 # develop log
 
+## 补充首页生成
+
+- status: done
+- update time: 2022-09-04 00:46:13
+
+任务详情:
+
+- 根据生成的html路径生成首页导航.
+
 ## 补充favicon.ico
 
-- status: doing
-- update time: 2022-09-03 17:00:04
+- status: done
+- update time: 2022-09-04 00:00:12
 
 在开发的过程中, 发现chrome会发送一个`GET /favicon.ico"`的请求, 通过搜索后才知道这个请求用来[设置地址栏的图标的](https://blog.csdn.net/allway2/article/details/109115253).
 
@@ -11,8 +20,8 @@
 
 ## markdown转html
 
-- status: todo
-- update time: 2022-09-03 15:19:11
+- status: done
+- update time: 2022-09-04 00:00:05
 
 需要处理的任务有:
 

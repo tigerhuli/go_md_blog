@@ -5,3 +5,7 @@ import "testing"
 func TestSyncMd(t *testing.T) {
 	syncMd()
 }
+
+func TestSyncIndex(t *testing.T) {
+	syncIndex()
+}
