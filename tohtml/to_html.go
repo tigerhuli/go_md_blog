@@ -4,6 +4,9 @@ import (
 	"bytes"
 	"fmt"
 	"io/ioutil"
+	"log"
+	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -14,26 +17,38 @@ import (
 
 // ToHTML 将markdown转换为html
 func ToHTML(md_path, html_path string) {
+	dir_path := filepath.Dir(html_path)
+	if _, err := os.Stat(dir_path); os.IsNotExist(err) {
+		err := os.MkdirAll(dir_path, 0666)
+		if err != nil {
+			log.Println(err.Error())
+		}
+	}
+
 	md_content, err := ioutil.ReadFile(md_path)
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
+		return
 	}
 
 	var buf bytes.Buffer
 	if err := goldmark.New(goldmark.WithExtensions(&mermaid.Extender{})).Convert(md_content, &buf); err != nil {
-		panic(err)
+		log.Println(err.Error())
+		return
 	}
 
 	html_content := buf.Bytes()
 	html_content = replaceHtmlImage(html_content)
-	ioutil.WriteFile(html_path, html_content, 0666)
+	err = ioutil.WriteFile(html_path, html_content, 0666)
+	if err != nil {
+		log.Println(err.Error())
+	}
 }
 
-// replaceHtmlImage 替换html中的image
+// replaceHtmlImage 替换html中的image TODO: 考虑图片路径的相对性
 func replaceHtmlImage(content []byte) []byte {
 	image_reg := regexp.MustCompile(`<img[\s\S]+?>`)
 	matches := image_reg.FindAll(content, -1)
-	fmt.Println(len(matches))
 
 	tag_map := make(map[string]string)
 	for _, match := range matches {
@@ -60,6 +75,5 @@ func replaceHtmlImage(content []byte) []byte {
 		content = bytes.ReplaceAll(content, []byte(tag), []byte(new_tag))
 	}
 
-	fmt.Println(string(content))
 	return content
 }
