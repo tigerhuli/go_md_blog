@@ -3,6 +3,7 @@ package router
 import (
 	"fmt"
 	"io/ioutil"
+	"net/http"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -15,10 +16,12 @@ func article(c *gin.Context) {
 	article_path = strings.TrimSuffix(article_path, "/")
 
 	fmt.Println("get article path", article_path)
-	fileBytes, err := ioutil.ReadFile(fmt.Sprintf("./output/%s", article_path))
+	md_content, err := ioutil.ReadFile(fmt.Sprintf("./output/%s", article_path))
 	if err != nil {
 		panic(err)
 	}
 
-	c.Writer.Write(fileBytes)
+	gin_h := gin.H{}
+	gin_h["md_content"] = string(md_content)
+	c.HTML(http.StatusOK, "article.html", gin_h)
 }
