@@ -1,5 +1,12 @@
 # develop log
 
+## 补充favicon.ico
+
+- status: doing
+- update time: 2022-09-03 17:00:04
+
+在开发的过程中, 发现chrome会发送一个`GET /favicon.ico"`的请求, 通过搜索后才知道这个请求用来[设置地址栏的图标的](https://blog.csdn.net/allway2/article/details/109115253).
+
 ## markdown转html
 
 - status: todo
@@ -12,8 +19,8 @@
 
 ## 拉取文章
 
-- status: doing
-- update time: 2022-09-03 15:52:29
+- status: done
+- update time: 2022-09-03 16:59:17
 
 拉取文章的接口, 返回html页面.
 
