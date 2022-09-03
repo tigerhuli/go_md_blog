@@ -4,5 +4,5 @@ import "go_md_blog/router"
 
 func main() {
 	root := router.Init()
-	root.Run(":80")
+	root.Run(":8080")
 }
