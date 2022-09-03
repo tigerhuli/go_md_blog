@@ -3,8 +3,8 @@ package tohtml
 import "testing"
 
 func TestToHtml(t *testing.T) {
-	md_path := `D:\code_personal\go_md_blog\input\hello world.md`
-	html_path := `D:\code_personal\go_md_blog\output\hello world.html`
+	md_path := `/data/repos/go_md_blog/input/hello world.md`
+	html_path := `/data/repos/go_md_blog/output/hello world.html`
 	ToHTML(md_path, html_path)
 }
 

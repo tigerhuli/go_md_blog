@@ -50,7 +50,7 @@ func replaceHtmlImage(content []byte) []byte {
 		path := string(sub_matches[2])
 		fmt.Println(path)
 
-		new_path := fmt.Sprintf(`http://127.0.0.1:8080/image/%s`, path)
+		new_path := fmt.Sprintf(`http://tigerhuli.com/image/%s`, path)
 		new_tag := strings.Replace(tag, path, new_path, 1)
 
 		tag_map[tag] = new_tag
