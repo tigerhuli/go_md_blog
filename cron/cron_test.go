@@ -9,3 +9,7 @@ func TestSyncMd(t *testing.T) {
 func TestSyncIndex(t *testing.T) {
 	syncIndex()
 }
+
+func TestSyncMmIndex(t *testing.T) {
+	syncMmIndex()
+}

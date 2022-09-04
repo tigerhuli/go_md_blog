@@ -1,5 +1,35 @@
 # develop log
 
+## 将首页渲染为mind map
+
+- status: doing
+- update time: 2022-09-04 09:29:31
+
+这一块最开始想简单了, 以为可以加一下css样式来实现这个功能. 后面搜索了一段时间后发现没有很好的解决方案.
+
+在搜索的时候发看到一个问题[markmap: Insert the mindmap to the HTML](https://stackoverflow.com/questions/65517545/markmap-insert-the-mindmap-to-the-html), 这里面想要实现的功能和我的很像, 但是最终需要用到js, 看了一下需要渲染额内容主要是这样的:
+
+```json
+{
+        "t": "root", "d": 0, "v": "", "c": [
+            {
+                "t": "heading", "d": 1, "v": "教學", "c": [
+                    { "t": "heading", "d": 2, "v": "<a href=\"https://markmap.js.org/repl/\">Hugo</a>" },
+                    {
+                        "t": "heading", "d": 2, "v": "JS", "c": [
+                            { "t": "heading", "d": 3, "v": "jquery" },
+                            { "t": "heading", "d": 3, "v": "bootstrap" }
+                        ]
+                    }
+                ]
+            },
+            { "t": "heading", "d": 1, "v": "科技", "c": [] }
+        ]
+}
+```
+
+就是一个json文本, 可以使用自定义结构体来构造.
+
 ## 补充首页生成
 
 - status: done

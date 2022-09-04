@@ -16,7 +16,9 @@ func Init() *gin.Engine {
 	})
 	root.LoadHTMLGlob("./templates/*")
 
-	root.GET("/", index)
+	root.GET("/", mmIndex)
+	root.GET("/mm_index", mmIndex)
+	root.GET("/index", index)
 	root.GET("/image/*action", image)
 	root.GET("/article/*action", article)
 	root.StaticFile("/favicon_zzz", "./resources/favicon.png")
