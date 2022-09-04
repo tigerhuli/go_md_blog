@@ -1,4 +1,4 @@
 package cache
 
 var IndexContent string
-var IndexMmContent string
+var MmScript string

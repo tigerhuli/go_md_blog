@@ -26,7 +26,8 @@ func syncMmIndex() {
 		fmt.Println(err.Error())
 	}
 
-	cache.IndexMmContent = content
+	fmt.Println(content)
+	cache.MmScript = content
 }
 
 // genMmIndexContent ...
