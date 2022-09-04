@@ -12,9 +12,12 @@ func Init() {
 	syncMmIndex()
 
 	job := cron.New()
-	job.AddFunc("* * * * *", syncMd)
-	job.AddFunc("* * * * *", syncIndex)
-	job.AddFunc("* * * * *", syncMmIndex)
+	cron_daily := func() {
+		syncMd()
+		syncIndex()
+		syncMmIndex()
+	}
+	job.AddFunc("0 0 * * *", cron_daily)
 	job.AddFunc("* * * * *", func() { fmt.Println("test ...") })
 	job.Start()
 }
