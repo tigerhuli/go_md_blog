@@ -10,6 +10,6 @@ import (
 // mmIndex 空请求返回结果
 func mmIndex(c *gin.Context) {
 	gin_h := gin.H{}
-	gin_h["mm_script"] = cache.IndexContent
-	c.HTML(http.StatusOK, "index.html", gin_h)
+	gin_h["mm_script"] = cache.MmScript
+	c.HTML(http.StatusOK, "mm_index.html", gin_h)
 }

@@ -30,6 +30,8 @@
 
 就是一个json文本, 可以使用自定义结构体来构造.
 
+在处理过程中遇到的另一个问题是svg图片的大小显示不太合适, 最终参考[Make svg scale to full screen size](https://stackoverflow.com/questions/25689678/make-svg-scale-to-full-screen-size)将svg图像设置为全屏.
+
 ## 补充首页生成
 
 - status: done

@@ -26,7 +26,6 @@ func syncMmIndex() {
 		fmt.Println(err.Error())
 	}
 
-	fmt.Println(content)
 	cache.MmScript = content
 }
 
@@ -57,7 +56,6 @@ func genMmIndexContent(dir string) (string, error) {
 
 // genMmNodeDfs ...
 func genMmNodeDfs(path string, d int32, is_dir bool) (*MmNode, error) {
-	fmt.Println(path)
 	node := &MmNode{}
 	node.D = d
 	switch d {
