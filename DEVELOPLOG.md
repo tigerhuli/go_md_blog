@@ -1,9 +1,16 @@
 # develop log
 
+## 补充网站header与footer
+
+- status: done
+- update time: 2022-09-04 11:24:46
+
+使用gin的html模板可以比较方便地进行插入.
+
 ## 将首页渲染为mind map
 
-- status: doing
-- update time: 2022-09-04 09:29:31
+- status: done
+- update time: 2022-09-04 10:51:33
 
 这一块最开始想简单了, 以为可以加一下css样式来实现这个功能. 后面搜索了一段时间后发现没有很好的解决方案.
 

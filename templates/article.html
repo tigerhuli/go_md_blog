@@ -15,7 +15,13 @@
 </head>
 
 <body>
-    {{.md_content | safe}}
+    {{ template "header.tmpl" .}}
+
+    <div>
+        {{.md_content | safe}}
+    </div>
+
+    {{ template "footer.tmpl" .}}
 </body>
 
 </html>
