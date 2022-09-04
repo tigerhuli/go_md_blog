@@ -11,13 +11,21 @@
             max-width: 66%;
             max-height: 66%;
         }
+
+        h1 {
+            text-align: center;
+        }
+
+        div.md_content {
+            margin: 30px;
+        }
     </style>
 </head>
 
 <body>
     {{ template "header.tmpl" .}}
 
-    <div>
+    <div class="md_content">
         {{.md_content | safe}}
     </div>
 

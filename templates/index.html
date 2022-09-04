@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    div.index_content {
+        margin: 70px;
+    }
+</style>
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +15,7 @@
 <body>
     {{ template "header.tmpl" .}}
 
-    <div>
+    <div class="index_content">
         {{.index_content | safe}}
     </div>
 
