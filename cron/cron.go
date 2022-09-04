@@ -8,6 +8,7 @@ import (
 
 // Init ...
 func Init() {
+	syncMd()
 	syncIndex()
 	syncMmIndex()
 

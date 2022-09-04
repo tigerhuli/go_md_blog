@@ -1,5 +1,12 @@
 # develop log
 
+## 补充Home, About
+
+- status: todo
+- update time: 2022-09-04 21:46:21
+
+补充Home页面及About页面.
+
 ## 补充网站header与footer
 
 - status: done

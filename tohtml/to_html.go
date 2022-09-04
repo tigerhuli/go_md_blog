@@ -64,6 +64,9 @@ func replaceHtmlImage(md_path string, content []byte) []byte {
 		}
 
 		path := string(sub_matches[2])
+		if strings.Contains(path, "http") { // ignore http link
+			continue
+		}
 		dir := filepath.Dir(md_path)
 		new_path := filepath.Join(dir, path) // 处理相对路径
 		new_path = strings.TrimPrefix(new_path, "input/")
