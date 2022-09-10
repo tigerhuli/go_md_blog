@@ -1,9 +1,11 @@
 package constant
 
 const (
-	ArticlesPath     = "content/articles"
-	ArticlesHtmlPath = "content_html/articles"
-	ContentPath      = "content"
+	ContentPath         = "content"
+	ArticlesPath        = "content/articles"
+	ArticlesHtmlPath    = "content_html/articles"
+	ImpressionsPath     = "content/impressions"
+	ImpressionsHtmlPath = "content_html/impressions"
 )
 
 const (

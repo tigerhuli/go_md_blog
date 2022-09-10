@@ -15,8 +15,8 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-// syncArticle 同步article到html
-func syncArticle() {
+// syncArticles 同步article到html
+func syncArticles() {
 	input_dir := constant.ArticlesPath
 	md_paths, err := getMdPaths(input_dir)
 	if err != nil {

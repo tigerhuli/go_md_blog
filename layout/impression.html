@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {{ template "head_extend.html" . }}
+    <title>Document</title>
+    <style>
+        img {
+            max-width: 66%;
+            max-height: 66%;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        div.impression {
+            margin: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    {{ template "navi.html" .}}
+
+    <div class="impression">
+        {{ .article_content | safe}}
+    </div>
+
+    {{ template "footer.html" .}}
+</body>
+
+</html>

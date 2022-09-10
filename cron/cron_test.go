@@ -3,7 +3,7 @@ package cron
 import "testing"
 
 func TestSyncMd(t *testing.T) {
-	syncArticle()
+	syncArticles()
 }
 
 func TestSyncIndex(t *testing.T) {

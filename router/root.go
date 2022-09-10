@@ -18,10 +18,14 @@ func Init() *gin.Engine {
 	root.LoadHTMLGlob("./layout/*")
 
 	root.GET("/", index)
-	root.GET("/article_navi", articleNavi)
 	root.GET("/image/*action", image)
-	root.GET("/article/*action", article)
 	root.Static("/static", "./static/")
+
+	root.GET("/article_navi", articleNavi)
+	root.GET("/article/*action", article)
+
+	root.GET("/impression_navi", impressionNavi)
+	root.GET("/impression/*action", impression)
 
 	return root
 }
