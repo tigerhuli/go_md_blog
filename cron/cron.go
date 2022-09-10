@@ -8,13 +8,13 @@ import (
 
 // Init ...
 func Init() {
-	syncMdToHtml()
+	syncArticle()
 	syncArticleTree()
 	syncArticleMm()
 
 	job := cron.New()
 	cron_daily := func() {
-		syncMdToHtml()
+		syncArticle()
 		syncArticleTree()
 		syncArticleMm()
 	}

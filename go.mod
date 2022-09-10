@@ -8,6 +8,7 @@ require (
 	github.com/json-iterator/go v1.1.12
 	github.com/robfig/cron/v3 v3.0.0
 	github.com/yuin/goldmark v1.4.14
+	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
@@ -27,5 +28,4 @@ require (
 	golang.org/x/sys v0.0.0-20210806184541-e5e7981a1069 // indirect
 	golang.org/x/text v0.3.6 // indirect
 	google.golang.org/protobuf v1.28.0 // indirect
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 )

@@ -94,7 +94,7 @@ func genMmValue(path string, is_dir bool) string {
 	if is_dir {
 		content = `${name}`
 	} else {
-		content = `<a href="${url}">${name}</a>`
+		content = `<a href="${url}" target="_blank">${name}</a>`
 		url := strings.TrimPrefix(path, constant.ArticlesHtmlPath)
 		url = fmt.Sprintf("http://tigerhuli.com/article/%s", url)
 		content = strings.ReplaceAll(content, "${url}", url)

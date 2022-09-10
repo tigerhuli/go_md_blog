@@ -55,7 +55,7 @@ func genIndexDfs(dir string, layer int) (string, error) {
 func genArticleContent(layer int, path string) string {
 	url := strings.TrimPrefix(path, constant.ArticlesHtmlPath)
 	url = fmt.Sprintf("http://tigerhuli.com/article/%s", url)
-	content := `<h${layer}><a href="${url}">${name}</a></h${layer}>`
+	content := `<h${layer}><a href="${url}" target="_blank">${name}</a></h${layer}>`
 	content = strings.ReplaceAll(content, "${url}", url)
 
 	name := filepath.Base(path)

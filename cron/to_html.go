@@ -17,19 +17,13 @@ import (
 )
 
 // toHTML 将markdown转换为html
-func toHTML(md_path, html_path string) {
+func toHTML(md_path, html_path string, md_content []byte) {
 	dir_path := filepath.Dir(html_path)
 	if _, err := os.Stat(dir_path); os.IsNotExist(err) {
 		err := os.MkdirAll(dir_path, 0666)
 		if err != nil {
 			log.Println(err.Error())
 		}
-	}
-
-	md_content, err := ioutil.ReadFile(md_path)
-	if err != nil {
-		log.Println(err.Error())
-		return
 	}
 
 	var buf bytes.Buffer
@@ -40,7 +34,7 @@ func toHTML(md_path, html_path string) {
 
 	html_content := buf.Bytes()
 	html_content = replaceHtmlImage(md_path, html_content)
-	err = ioutil.WriteFile(html_path, html_content, 0666)
+	err := ioutil.WriteFile(html_path, html_content, 0666)
 	if err != nil {
 		log.Println(err.Error())
 	}

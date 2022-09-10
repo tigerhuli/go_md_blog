@@ -21,7 +21,7 @@ func Init() *gin.Engine {
 	root.GET("/article_navi", articleNavi)
 	root.GET("/image/*action", image)
 	root.GET("/article/*action", article)
-	root.StaticFile("/favicon_zzz", "./static/favicon.png")
+	root.Static("/static", "./static/")
 
 	return root
 }

@@ -1,21 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<style>
-    div.index_content {
-        margin: 70px;
-    }
-</style>
 
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="http://tigerhuli.com/favicon_zzz" />
+    {{ template "head_extend.html" . }}
     <title>Document</title>
+
+    <style>
+        .article_list_href {
+            text-decoration: none;
+
+        }
+
+        .article_list {
+            margin-top: 10%;
+            margin-left: 10%;
+            height: 200px;
+            width: 1000px;
+            border-bottom-width: 3px;
+            border-bottom-style: solid;
+            border-bottom-color: black;
+            color: black;
+            align-self: center;
+        }
+
+        .article_list_img {
+            float: left;
+            height: 60%;
+        }
+
+        .article_list_p {
+            float: left;
+            margin-left: 3%;
+            margin-top: 2%;
+        }
+    </style>
 </head>
 
 <body>
     {{ template "navi.html" .}}
 
-    hi there
+    {{ range .articles }}
+    <a href={{ .Url }} target="_blank" class="article_list_href">
+        <div class="article_list">
+            <h1 class="article_title">{{ .Title }}</h1>
+            <img src={{ .Cover }} class="article_list_img">
+            <p class="article_list_p">
+                Create Time: {{ .CreateTime }} <br><br>
+                Update Time: {{ .UpdateTime }}
+            </p>
+        </div>
+    </a>
+    {{ end }}
 
     {{ template "footer.html" .}}
 </body>

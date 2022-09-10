@@ -2,13 +2,21 @@ package cron
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
 	"testing"
 )
 
 func TestToHtml(t *testing.T) {
 	md_path := `/data/repos/go_md_blog/input/hello world.md`
 	html_path := `/data/repos/go_md_blog/output/hello world.html`
-	toHTML(md_path, html_path)
+	md_content, err := ioutil.ReadFile(md_path)
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+
+	toHTML(md_path, html_path, md_content)
 }
 
 func TestReplaceHtmlImage(t *testing.T) {
