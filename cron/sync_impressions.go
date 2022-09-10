@@ -95,6 +95,7 @@ func getImpressionFromMd(md_path, html_path string, md_content []byte) (model.Im
 	}
 
 	impression.Name = fmt.Sprintf("%s %s", emoji, impression.Name)
+	log.Println(impression.Tags)
 
 	return impression, md_content, nil
 }

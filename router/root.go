@@ -9,6 +9,7 @@ import (
 // Init 初始化gin接口
 func Init() *gin.Engine {
 	root := gin.Default()
+	root.SetTrustedProxies(nil)
 	root.SetFuncMap(template.FuncMap{ // 取消嵌入html后的双引号
 		"safe": func(str string) template.HTML {
 			return template.HTML(str)

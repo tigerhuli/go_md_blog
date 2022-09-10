@@ -20,6 +20,7 @@ TODO:
 
 1. 补充impression标签.
 2. 查看comment栏magin不能设置的问题.
+3. 补充跳转链接.
 
 ## 根据hugo的网站组织重构
 
