@@ -72,10 +72,29 @@ func getImpressionFromMd(md_path, html_path string, md_content []byte) (model.Im
 	}
 
 	if len(impression.Url) == 0 {
-		url := strings.TrimPrefix(html_path, constant.ArticlesHtmlPath)
-		url = fmt.Sprintf("http://tigerhuli.com/article/%s", url)
+		url := strings.TrimPrefix(html_path, constant.ImpressionsHtmlPath)
+		url = fmt.Sprintf("http://tigerhuli.com/impression/%s", url)
 		impression.Url = url
 	}
+
+	var emoji string
+	switch impression.ContentType {
+	case "movie":
+		emoji = "&#127909;"
+	case "video":
+		emoji = "&#128250;"
+	case "book":
+		emoji = "&#128214;"
+	default:
+		emoji = "&#127760;"
+	}
+
+	impression.Stars = ""
+	for i := 1; i <= int(impression.Grade) && i <= 5; i++ {
+		impression.Stars += "&#11088;"
+	}
+
+	impression.Name = fmt.Sprintf("%s %s", emoji, impression.Name)
 
 	return impression, md_content, nil
 }

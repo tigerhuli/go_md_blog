@@ -7,32 +7,45 @@
     <title>Document</title>
 
     <style>
-        .impression_list_href {
-            text-decoration: none;
+        div.gallery_canvas {
+            margin-left: 100px;
 
         }
 
-        .impression_list {
-            margin-top: 10%;
-            margin-left: 10%;
-            height: 200px;
-            width: 1000px;
-            border-bottom-width: 3px;
-            border-bottom-style: solid;
-            border-bottom-color: black;
-            color: black;
-            align-self: center;
-        }
-
-        .impression_list_img {
+        div.gallery {
+            margin: 10px;
+            border: 1px solid #ccc;
             float: left;
-            height: 60%;
+            width: 350px;
+            border-radius: 15px;
         }
 
-        .impression_list_p {
-            float: left;
-            margin-left: 3%;
-            margin-top: 2%;
+        div.gallery:hover {
+            background-color: #f2f2f2;
+        }
+
+        div.gallery img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        div.desc {
+            height: 100px;
+            margin-left: 8px;
+            text-align: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        p.gallery_name {
+            clear: both;
+            margin: 3;
+        }
+
+        p.gallery_comment {
+            font-size: small;
         }
     </style>
 </head>
@@ -41,18 +54,24 @@
 
     {{ template "navi.html" .}}
 
-    {{ range .impressions }}
-    <a href={{ .Url }} target="_blank" class="impression_list_href">
-        <div class="impression_list">
-            <h1 class="impression_name">{{ .Name }}</h1>
-            <img src={{ .Cover }} class="impression_list_img">
-            <p class="impression_list_p">
-                Create Time: {{ .CreateTime }} <br><br>
-                Update Time: {{ .UpdateTime }}
-            </p>
+    <div class="gallery_canvas">
+        {{ range .impressions }}
+        <div class="gallery">
+            <a target="_blank" href={{ .Url }}>
+                <img src={{ .Cover }} width="600" height="400">
+            </a>
+            <div class="desc">
+                <p class="gallery_name">
+                    {{ .Name | safe}}
+                </p>
+                <p class="gallery_comment">
+                    {{ .Stars | safe}} <br>
+                    {{ .Comment}}
+                </p>
+            </div>
         </div>
-    </a>
-    {{ end }}
+        {{ end }}
+    </div>
 
     {{ template "footer.html" .}}
 </body>

@@ -1,15 +1,36 @@
 # develop log
 
+## 补充impressions页面
+
+- status: doing
+- update time: 2022-09-10 19:27:50
+
+使用图片gallery的方式来组织内容. 过程中尴尬的发现footer会跑到右边去. 最后参考资料[CSS to make HTML page footer stay at bottom of the page with a minimum height, but not overlap the page](https://stackoverflow.com/questions/643879/css-to-make-html-page-footer-stay-at-bottom-of-the-page-with-a-minimum-height-b)解决, 最终的解决方案是:
+
+```css
+footer {
+    clear: both;
+    position: relative;
+    height: 200px;
+    margin-top: -200px;
+}
+```
+
+TODO:
+
+1. 补充impression标签.
+2. 查看comment栏magin不能设置的问题.
+
 ## 根据hugo的网站组织重构
 
-- status: todo
+- status: done
 - update time: 2022-09-10 07:23:33
 
-主要是参考hugo的页面布局
+主要是参考hugo的content组织.
 
 ## 补充Home, About
 
-- status: todo
+- status: doing
 - update time: 2022-09-04 21:46:21
 
 补充Home页面及About页面.
