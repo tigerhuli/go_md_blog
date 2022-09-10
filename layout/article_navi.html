@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    {{ template "header.html" .}}
+    {{ template "navi.html" .}}
 
     <div>
         <svg id="mindmap" width="75%" height="75%" viewBox="0 0 1010 666"></svg>
@@ -16,6 +16,7 @@
         <script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.0"></script>
 
         {{ .article_mm | safe}}
+
     </div>
 
     <div class="article_navi">
