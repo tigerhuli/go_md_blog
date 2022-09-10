@@ -13,13 +13,11 @@
 </head>
 
 <body>
-    {{ template "header.tmpl" .}}
+    {{ template "header.html" .}}
 
-    <div class="index_content">
-        {{.index_content | safe}}
-    </div>
+    hi there
 
-    {{ template "footer.tmpl" .}}
+    {{ template "footer.html" .}}
 </body>
 
 </html>

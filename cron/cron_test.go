@@ -3,13 +3,13 @@ package cron
 import "testing"
 
 func TestSyncMd(t *testing.T) {
-	syncMd()
+	syncMdToHtml()
 }
 
 func TestSyncIndex(t *testing.T) {
-	syncIndex()
+	syncArticleTree()
 }
 
 func TestSyncMmIndex(t *testing.T) {
-	syncMmIndex()
+	syncArticleMm()
 }

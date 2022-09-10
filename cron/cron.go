@@ -8,15 +8,15 @@ import (
 
 // Init ...
 func Init() {
-	syncMd()
-	syncIndex()
-	syncMmIndex()
+	syncMdToHtml()
+	syncArticleTree()
+	syncArticleMm()
 
 	job := cron.New()
 	cron_daily := func() {
-		syncMd()
-		syncIndex()
-		syncMmIndex()
+		syncMdToHtml()
+		syncArticleTree()
+		syncArticleMm()
 	}
 	job.AddFunc("0 0 * * *", cron_daily)
 	job.AddFunc("* * * * *", func() { fmt.Println("test ...") })

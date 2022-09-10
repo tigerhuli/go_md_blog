@@ -14,14 +14,14 @@ func Init() *gin.Engine {
 			return template.HTML(str)
 		},
 	})
-	root.LoadHTMLGlob("./templates/*")
 
-	root.GET("/", mmIndex)
-	root.GET("/mm_index", mmIndex)
-	root.GET("/index", index)
+	root.LoadHTMLGlob("./layout/*")
+
+	root.GET("/", index)
+	root.GET("/article_navi", articleNavi)
 	root.GET("/image/*action", image)
 	root.GET("/article/*action", article)
-	root.StaticFile("/favicon_zzz", "./resources/favicon.png")
+	root.StaticFile("/favicon_zzz", "./static/favicon.png")
 
 	return root
 }

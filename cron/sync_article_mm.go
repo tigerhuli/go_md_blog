@@ -3,6 +3,7 @@ package cron
 import (
 	"fmt"
 	"go_md_blog/cache"
+	"go_md_blog/constant"
 	"io/ioutil"
 	"path/filepath"
 	"strings"
@@ -18,19 +19,19 @@ type MmNode struct {
 	C []*MmNode `json:"c"` // 子节点列表
 }
 
-//syncMmIndex ...
-func syncMmIndex() {
-	html_dir := "./output"
-	content, err := genMmIndexContent(html_dir)
+//syncArticleMm ...
+func syncArticleMm() {
+	html_dir := constant.ArticlesHtmlPath
+	content, err := genContentHtmlMd(html_dir)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
 
-	cache.MmScript = content
+	cache.ArticleMm = content
 }
 
-// genMmIndexContent ...
-func genMmIndexContent(dir string) (string, error) {
+// genContentHtmlMd ...
+func genContentHtmlMd(dir string) (string, error) {
 	root, err := genMmNodeDfs(dir, 0, true)
 	if err != nil {
 		return "", err
@@ -94,7 +95,7 @@ func genMmValue(path string, is_dir bool) string {
 		content = `${name}`
 	} else {
 		content = `<a href="${url}">${name}</a>`
-		url := strings.TrimPrefix(path, "./output/")
+		url := strings.TrimPrefix(path, constant.ArticlesHtmlPath)
 		url = fmt.Sprintf("http://tigerhuli.com/article/%s", url)
 		content = strings.ReplaceAll(content, "${url}", url)
 	}

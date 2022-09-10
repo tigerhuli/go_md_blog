@@ -1,4 +1,4 @@
-package tohtml
+package cron
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 func TestToHtml(t *testing.T) {
 	md_path := `/data/repos/go_md_blog/input/hello world.md`
 	html_path := `/data/repos/go_md_blog/output/hello world.html`
-	ToHTML(md_path, html_path)
+	toHTML(md_path, html_path)
 }
 
 func TestReplaceHtmlImage(t *testing.T) {

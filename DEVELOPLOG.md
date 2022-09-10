@@ -1,5 +1,12 @@
 # develop log
 
+## 根据hugo的网站组织重构
+
+- status: todo
+- update time: 2022-09-10 07:23:33
+
+主要是参考hugo的页面布局
+
 ## 补充Home, About
 
 - status: todo

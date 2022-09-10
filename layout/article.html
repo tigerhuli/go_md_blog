@@ -16,20 +16,20 @@
             text-align: center;
         }
 
-        div.md_content {
+        div.article {
             margin: 30px;
         }
     </style>
 </head>
 
 <body>
-    {{ template "header.tmpl" .}}
+    {{ template "header.html" .}}
 
-    <div class="md_content">
-        {{.md_content | safe}}
+    <div class="article">
+        {{ .article_content | safe}}
     </div>
 
-    {{ template "footer.tmpl" .}}
+    {{ template "footer.html" .}}
 </body>
 
 </html>

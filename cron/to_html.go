@@ -1,8 +1,9 @@
-package tohtml
+package cron
 
 import (
 	"bytes"
 	"fmt"
+	"go_md_blog/constant"
 	"io/ioutil"
 	"log"
 	"os"
@@ -15,8 +16,8 @@ import (
 	mermaid "github.com/abhinav/goldmark-mermaid"
 )
 
-// ToHTML 将markdown转换为html
-func ToHTML(md_path, html_path string) {
+// toHTML 将markdown转换为html
+func toHTML(md_path, html_path string) {
 	dir_path := filepath.Dir(html_path)
 	if _, err := os.Stat(dir_path); os.IsNotExist(err) {
 		err := os.MkdirAll(dir_path, 0666)
@@ -45,7 +46,7 @@ func ToHTML(md_path, html_path string) {
 	}
 }
 
-// replaceHtmlImage 替换html中的image TODO: 考虑图片路径的相对性
+// replaceHtmlImage 替换html中的image
 func replaceHtmlImage(md_path string, content []byte) []byte {
 	image_reg := regexp.MustCompile(`<img[\s\S]+?>`)
 	matches := image_reg.FindAll(content, -1)
@@ -67,10 +68,11 @@ func replaceHtmlImage(md_path string, content []byte) []byte {
 		if strings.Contains(path, "http") { // ignore http link
 			continue
 		}
+
 		dir := filepath.Dir(md_path)
 		new_path := filepath.Join(dir, path) // 处理相对路径
-		new_path = strings.TrimPrefix(new_path, "input/")
-		new_path = fmt.Sprintf(`http://tigerhuli.com/image/%s`, new_path)
+		new_path = strings.TrimPrefix(new_path, constant.ContentPath)
+		new_path = fmt.Sprintf(`%s/image/%s`, constant.BaseUrl, new_path)
 		new_tag := strings.Replace(tag, path, new_path, 1)
 
 		tag_map[tag] = new_tag

@@ -3,22 +3,23 @@ package cron
 import (
 	"fmt"
 	"go_md_blog/cache"
+	"go_md_blog/constant"
 	"io/ioutil"
 	"log"
 	"path/filepath"
 	"strings"
 )
 
-// syncIndex 同步首页数据
-func syncIndex() {
-	html_dir := "./output"
+// syncArticleTree 同步首页数据
+func syncArticleTree() {
+	html_dir := constant.ArticlesHtmlPath
 	content, err := genIndexDfs(html_dir, 1)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 
-	cache.IndexContent = content
+	cache.ArticleTree = content
 }
 
 // genIndexDfs ...
@@ -52,7 +53,7 @@ func genIndexDfs(dir string, layer int) (string, error) {
 
 // genArticleContent 生成层级信息
 func genArticleContent(layer int, path string) string {
-	url := strings.TrimPrefix(path, "./output/")
+	url := strings.TrimPrefix(path, constant.ArticlesHtmlPath)
 	url = fmt.Sprintf("http://tigerhuli.com/article/%s", url)
 	content := `<h${layer}><a href="${url}">${name}</a></h${layer}>`
 	content = strings.ReplaceAll(content, "${url}", url)
