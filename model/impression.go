@@ -13,4 +13,5 @@ type Impression struct {
 	Cover       string   `yaml:"cover"`        // impression封面
 	Url         string   `yaml:"url"`          // impression链接
 	Tags        []string `yaml:"tags"`         // 标签列表
+	ColorTags   string   `yaml:"color_tags"`   // 有色彩的标签列表
 }

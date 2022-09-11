@@ -6,10 +6,12 @@ import (
 	"go_md_blog/cache"
 	"go_md_blog/constant"
 	"go_md_blog/model"
-	"io/ioutil"
 	"log"
+	"math/rand"
+	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 
 	"gopkg.in/yaml.v2"
@@ -29,7 +31,7 @@ func syncImpressions() {
 		html_path = strings.Split(html_path, ".")[0]
 		html_path = fmt.Sprintf("%s%s.html", constant.ImpressionsHtmlPath, html_path)
 
-		md_content, err := ioutil.ReadFile(md_path)
+		md_content, err := os.ReadFile(md_path)
 		if err != nil {
 			log.Println(err.Error())
 			return
@@ -38,7 +40,7 @@ func syncImpressions() {
 		impression, md_content, err := getImpressionFromMd(md_path, html_path, md_content)
 		if err != nil {
 			log.Printf("getArticleFromMdPath failed: %s", err.Error())
-			continue
+			panic(err)
 		}
 
 		impressions = append(impressions, impression)
@@ -46,6 +48,7 @@ func syncImpressions() {
 		toHTML(md_path, html_path, md_content)
 	}
 
+	sort.Slice(impressions, func(i, j int) bool { return impressions[i].UpdateTime > impressions[j].UpdateTime })
 	cache.Impressions = impressions
 }
 
@@ -59,10 +62,12 @@ func getImpressionFromMd(md_path, html_path string, md_content []byte) (model.Im
 
 	md_content = bytes.Replace(md_content, submatches[0], nil, 1)
 
+	yaml_content := submatches[2]
+	yaml_content = bytes.TrimSpace(yaml_content)
 	var impression model.Impression
-	err := yaml.Unmarshal(submatches[2], &impression)
+	err := yaml.Unmarshal(yaml_content, &impression)
 	if err != nil {
-		return model.Impression{}, nil, fmt.Errorf("unmarshal article info failed: %s", err)
+		return model.Impression{}, nil, fmt.Errorf("unmarshal article %s info failed: %s", md_path, err)
 	}
 
 	if len(impression.Name) == 0 {
@@ -96,6 +101,50 @@ func getImpressionFromMd(md_path, html_path string, md_content []byte) (model.Im
 
 	impression.Name = fmt.Sprintf("%s %s", emoji, impression.Name)
 	log.Println(impression.Tags)
+	impression.ColorTags = getColorTags(impression.Tags)
+	log.Println(impression.ColorTags)
 
 	return impression, md_content, nil
+}
+
+// getColorTags 生成有色彩的tag列表
+func getColorTags(tags []string) string {
+	var color_tags_builder strings.Builder
+	for _, tag := range tags {
+		color_tag := getColorTag(tag)
+		color_tags_builder.WriteString(color_tag)
+	}
+
+	return color_tags_builder.String()
+}
+
+// getColorTag 获取有色彩的tag
+func getColorTag(tag string) string {
+	bg_color := getTagBGColor(tag)
+	color_tag := `<p class="gallery_comment" id="tag" style="background-color:${color};">${tag}</p>`
+	color_tag = strings.ReplaceAll(color_tag, "${color}", bg_color)
+	color_tag = strings.ReplaceAll(color_tag, "${tag}", tag)
+	return color_tag
+}
+
+var colorList []string
+var colorMap map[string]int
+
+func init() {
+	colorList = []string{"#f2cbcb", "#f2cbcb", "#f2e2cb", "#f2e2cb", "#eff2cb", "#d6f2cb", "#d6f2cb",
+		"#cbf2d5", "#cbf2d5", "#cbdbf2", "#cccbf2", "#decbf2", "#decbf2", "#f2cbea", "#f2cbea"}
+	colorMap = make(map[string]int)
+}
+
+// getTagBGColor 获取随机背景延时
+func getTagBGColor(tag string) string {
+	index, ok := colorMap[tag]
+	if ok {
+		return colorList[index]
+	}
+
+	index = rand.Int() % len(colorList)
+	colorMap[tag] = index
+
+	return colorList[index]
 }

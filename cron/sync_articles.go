@@ -6,8 +6,8 @@ import (
 	"go_md_blog/cache"
 	"go_md_blog/constant"
 	"go_md_blog/model"
-	"io/ioutil"
 	"log"
+	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
@@ -29,7 +29,7 @@ func syncArticles() {
 		html_path = strings.Split(html_path, ".")[0]
 		html_path = fmt.Sprintf("%s%s.html", constant.ArticlesHtmlPath, html_path)
 
-		md_content, err := ioutil.ReadFile(md_path)
+		md_content, err := os.ReadFile(md_path)
 		if err != nil {
 			log.Println(err.Error())
 			return
@@ -82,7 +82,7 @@ func getArticleFromMd(md_path, html_path string, md_content []byte) (model.Artic
 
 // getMdPaths 拉取markdown列表
 func getMdPaths(input_dir string) ([]string, error) {
-	items, err := ioutil.ReadDir(input_dir)
+	items, err := os.ReadDir(input_dir)
 	if err != nil {
 		log.Printf("read %s failed", input_dir)
 	}

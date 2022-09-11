@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"go_md_blog/cache"
 	"go_md_blog/constant"
-	"io/ioutil"
 	"log"
+	"os"
 	"path/filepath"
 	"strings"
 )
@@ -24,7 +24,7 @@ func syncArticleTree() {
 
 // genIndexDfs ...
 func genIndexDfs(dir string, layer int) (string, error) {
-	items, err := ioutil.ReadDir(dir)
+	items, err := os.ReadDir(dir)
 	if err != nil {
 		log.Printf("read %s failed", dir)
 	}

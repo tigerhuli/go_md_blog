@@ -15,7 +15,7 @@
             margin: 10px;
             border: 1px solid #ccc;
             float: left;
-            width: 350px;
+            width: 320px;
             border-radius: 10px;
         }
 
@@ -34,17 +34,34 @@
             height: 100px;
             margin-left: 8px;
             text-align: left;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         p.gallery_name {
-            clear: both;
-            margin: 3;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+            text-overflow: ellipsis;
         }
 
-        p.gallery_comment {
+        div.gallery_comment {
+            width: 300px;
+            color: black;
             font-size: small;
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+            text-overflow: ellipsis;
+        }
+
+        p.gallery_comment#tag {
+            border-radius: 2px;
+            text-size-adjust: auto;
+            float: left;
+            margin: 0px;
+            margin-right: 5px;
+            font-size: smaller;
         }
     </style>
 </head>
@@ -56,17 +73,30 @@
     <div class="gallery_canvas">
         {{ range .impressions }}
         <div class="gallery">
-            <a target="_blank" href={{ .Url }}>
+            <a target="_blank" href={{ .ContentUrl }}>
                 <img src={{ .Cover }} width="600" height="400">
             </a>
+
             <div class="desc">
                 <p class="gallery_name">
                     {{ .Name | safe}}
                 </p>
-                <p class="gallery_comment">
-                    {{ .Stars | safe}} <br>
-                    {{ .Comment}}
-                </p>
+
+                <a target="_blank" style="text-decoration: none;" href={{ .Url }}>
+                    <div class="gallery_comment">
+                        {{ .Stars | safe}}
+                    </div>
+                    <div class="gallery_comment">
+                        {{ .Comment}}
+                    </div>
+                    <div class="gallery_comment">
+                        {{ .ColorTags | safe }}
+                    </div>
+                    <div class="gallery_comment">
+                        {{ .UpdateTime }}
+                    </div>
+                </a>
+
             </div>
         </div>
         {{ end }}

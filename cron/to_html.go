@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"go_md_blog/constant"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -34,7 +33,7 @@ func toHTML(md_path, html_path string, md_content []byte) {
 
 	html_content := buf.Bytes()
 	html_content = replaceHtmlImage(md_path, html_content)
-	err := ioutil.WriteFile(html_path, html_content, 0666)
+	err := os.WriteFile(html_path, html_content, 0666)
 	if err != nil {
 		log.Println(err.Error())
 	}

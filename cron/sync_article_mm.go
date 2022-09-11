@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"go_md_blog/cache"
 	"go_md_blog/constant"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -19,7 +19,7 @@ type MmNode struct {
 	C []*MmNode `json:"c"` // 子节点列表
 }
 
-//syncArticleMm ...
+// syncArticleMm ...
 func syncArticleMm() {
 	html_dir := constant.ArticlesHtmlPath
 	content, err := genContentHtmlMd(html_dir)
@@ -71,7 +71,7 @@ func genMmNodeDfs(path string, d int32, is_dir bool) (*MmNode, error) {
 		return node, nil
 	}
 
-	items, err := ioutil.ReadDir(path)
+	items, err := os.ReadDir(path)
 	if err != nil {
 		return nil, err
 	}
