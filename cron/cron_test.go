@@ -1,6 +1,9 @@
 package cron
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
 func TestSyncMd(t *testing.T) {
 	syncArticles()
@@ -14,6 +17,7 @@ func TestSyncMmIndex(t *testing.T) {
 	syncArticleMm()
 }
 
-func TestRegExp(t *testing.T) {
-
+func TestClearExpiredHtml(t *testing.T) {
+	start_time := time.Now()
+	clearExpiredHtmlWithDir(start_time, "../content_html/articles")
 }

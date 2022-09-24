@@ -1,5 +1,15 @@
 # develop log
 
+## 补充访问量统计
+
+- status: todo
+- update time: 2022-09-24 15:48:58
+
+## 优化逻辑-清理旧的HTML文件
+
+- status: done
+- update time: 2022-09-24 16:37:37
+
 ## 补充impressions页面
 
 - status: done
@@ -29,7 +39,7 @@ footer {
 
 ## 补充Home, About
 
-- status: doing
+- status: todo
 - update time: 2022-09-04 21:46:21
 
 补充Home页面及About页面.

@@ -82,27 +82,5 @@ func getArticleFromMd(md_path, html_path string, md_content []byte) (model.Artic
 
 // getMdPaths 拉取markdown列表
 func getMdPaths(input_dir string) ([]string, error) {
-	items, err := os.ReadDir(input_dir)
-	if err != nil {
-		log.Printf("read %s failed", input_dir)
-	}
-
-	var md_paths []string
-	for _, item := range items {
-		if item.IsDir() {
-			inner_md_paths, err := getMdPaths(fmt.Sprintf("%s/%s", input_dir, item.Name()))
-			if err != nil {
-				log.Printf("getMdPaths failed: %s", err)
-				continue
-			}
-			md_paths = append(md_paths, inner_md_paths...)
-			continue
-		}
-
-		if strings.HasSuffix(item.Name(), ".md") || strings.HasSuffix(item.Name(), ".markdown") {
-			md_paths = append(md_paths, fmt.Sprintf("%s/%s", input_dir, item.Name()))
-		}
-	}
-
-	return md_paths, nil
+	return getFilePaths(input_dir, []string{".md", ".markdown"})
 }
