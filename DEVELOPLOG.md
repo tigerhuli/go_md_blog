@@ -2,8 +2,10 @@
 
 ## 补充访问量统计
 
-- status: todo
+- status: done
 - update time: 2022-09-24 15:48:58
+
+目前只需要考虑总的请求量即可.
 
 ## 优化逻辑-清理旧的HTML文件
 

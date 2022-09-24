@@ -3,8 +3,8 @@ package router
 import (
 	"fmt"
 	"go_md_blog/constant"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -17,7 +17,8 @@ func impression(c *gin.Context) {
 	impression_path = strings.TrimSuffix(impression_path, "/")
 
 	fmt.Println("get impression path", impression_path)
-	impression_content, err := ioutil.ReadFile(fmt.Sprintf("%s/%s", constant.ImpressionsHtmlPath, impression_path))
+
+	impression_content, err := os.ReadFile(fmt.Sprintf("%s/%s", constant.ImpressionsHtmlPath, impression_path))
 	if err != nil {
 		panic(err)
 	}

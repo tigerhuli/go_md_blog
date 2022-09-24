@@ -3,8 +3,8 @@ package router
 import (
 	"fmt"
 	"go_md_blog/constant"
-	"io/ioutil"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -17,7 +17,7 @@ func article(c *gin.Context) {
 	article_path = strings.TrimSuffix(article_path, "/")
 
 	fmt.Println("get article path", article_path)
-	article_content, err := ioutil.ReadFile(fmt.Sprintf("%s/%s", constant.ArticlesHtmlPath, article_path))
+	article_content, err := os.ReadFile(fmt.Sprintf("%s/%s", constant.ArticlesHtmlPath, article_path))
 	if err != nil {
 		panic(err)
 	}

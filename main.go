@@ -11,5 +11,6 @@ func main() {
 
 	cron.Init()
 	root := router.Init()
+
 	root.Run(":80")
 }

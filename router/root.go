@@ -1,7 +1,9 @@
 package router
 
 import (
+	"go_md_blog/cache"
 	"html/template"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,6 +17,7 @@ func Init() *gin.Engine {
 			return template.HTML(str)
 		},
 	})
+	root.Use(addPageViewTotal())
 
 	root.LoadHTMLGlob("./layout/*")
 
@@ -31,4 +34,19 @@ func Init() *gin.Engine {
 	root.GET("/about", about)
 
 	return root
+}
+
+// addPageViewTotal 自增页面访问
+func addPageViewTotal() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		if strings.HasPrefix(c.Request.URL.Path, "/image") {
+			return
+		}
+
+		if strings.HasPrefix(c.Request.URL.Path, "/static") {
+			return
+		}
+
+		cache.PageViewTotal.Add(1)
+	}
 }

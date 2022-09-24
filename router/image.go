@@ -3,7 +3,7 @@ package router
 import (
 	"fmt"
 	"go_md_blog/constant"
-	"io/ioutil"
+	"os"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -16,7 +16,8 @@ func image(c *gin.Context) {
 	image_path = strings.TrimSuffix(image_path, "/")
 
 	fmt.Println("get image path", image_path)
-	fileBytes, err := ioutil.ReadFile(fmt.Sprintf("%s/%s", constant.ContentPath, image_path))
+
+	fileBytes, err := os.ReadFile(fmt.Sprintf("%s/%s", constant.ContentPath, image_path))
 	if err != nil {
 		panic(err)
 	}

@@ -13,3 +13,7 @@ const (
 const (
 	BaseUrl = "http://tigerhuli.com"
 )
+
+const (
+	PageViewPath = "cache/page_view.yaml"
+)
