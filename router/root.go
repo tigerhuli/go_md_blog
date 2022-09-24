@@ -28,5 +28,7 @@ func Init() *gin.Engine {
 	root.GET("/impression_navi", impressionNavi)
 	root.GET("/impression/*action", impression)
 
+	root.GET("/about", about)
+
 	return root
 }

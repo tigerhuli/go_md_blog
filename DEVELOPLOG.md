@@ -39,7 +39,7 @@ footer {
 
 ## 补充Home, About
 
-- status: todo
+- status: done
 - update time: 2022-09-04 21:46:21
 
 补充Home页面及About页面.
