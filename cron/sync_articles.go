@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 
 	"gopkg.in/yaml.v2"
@@ -45,6 +46,8 @@ func syncArticles() {
 
 		toHTML(md_path, html_path, md_content)
 	}
+
+	sort.Slice(articles, func(i, j int) bool { return articles[i].UpdateTime > articles[j].UpdateTime })
 
 	cache.Articles = articles
 }
