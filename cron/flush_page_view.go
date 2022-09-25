@@ -9,8 +9,8 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-// flushPageView 保存页面访问结果
-func flushPageView() {
+// FlushPageView 保存页面访问结果
+func FlushPageView() {
 	var page_view cache.PageView
 	page_view.Total = cache.PageViewTotal.Load()
 

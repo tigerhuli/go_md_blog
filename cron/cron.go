@@ -24,6 +24,6 @@ func Init() {
 		clearExpiredHtml(start_time)
 	}
 	job.AddFunc("0 0 * * *", cron_daily)
-	job.AddFunc("* * * * *", flushPageView)
+	job.AddFunc("* * * * *", FlushPageView)
 	job.Start()
 }
