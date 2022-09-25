@@ -2,7 +2,7 @@
 
 ## 项目介绍
 
-这是一个[兴趣使然](https://en.wikipedia.org/wiki/One-Punch_Man)的个人博客系统🤪, 使用[Gin](https://github.com/gin-gonic/gin)作为服务框架, 博客的主要内容以markdown组织, 示例网站: http://tigerhuli.com/.
+这是一个兴趣使然([for the fun of it](https://en.wikipedia.org/wiki/List_of_One-Punch_Man_characters#Saitama))的个人博客系统🤪, 使用[Gin](https://github.com/gin-gonic/gin)作为服务框架, 博客的主要内容以markdown组织, 示例网站: http://tigerhuli.com/.
 
 虽然有参考[HUGO](https://gohugo.io/)的项目结构, 但这是一个仍是一个非常定制化的博客网站, 有很多硬编码逻辑, 不适合直接使用🙅🏻‍♂️.
 
