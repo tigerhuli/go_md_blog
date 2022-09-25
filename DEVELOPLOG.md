@@ -2,7 +2,7 @@
 
 ## 补充read more button
 
-- status: todo
+- status: done
 - update time: 2022-09-24 23:31:27
 
 ## 补充访问量统计

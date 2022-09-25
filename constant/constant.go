@@ -17,3 +17,8 @@ const (
 const (
 	PageViewPath = "cache/page_view.yaml"
 )
+
+const (
+	ImpressionNaviMoreSize = 8
+	IndexMoreSize          = 5
+)

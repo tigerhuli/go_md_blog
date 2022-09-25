@@ -1,0 +1,16 @@
+{{ range .articles }}
+
+<div class="article_list">
+    <a href={{ .Url }} target="_blank" class="article_list_href">
+        <h1 class="article_title">{{ .Title }}</h1>
+        <img src={{ .Cover }} class="article_list_img">
+        <p class="article_list_p">
+            Create Time: {{ .CreateTime }} <br><br>
+            Update Time: {{ .UpdateTime }}
+        </p>
+    </a>
+
+</div>
+{{ end }}
+
+<div id="nextBatch"></div>

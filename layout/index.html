@@ -57,7 +57,53 @@
     </div>
     {{ end }}
 
+    <div id="nextBatch"></div>
+
+    <style>
+        .loadmorediv {
+            text-align: center;
+            clear: both;
+            position: relative;
+            margin-top: 3%;
+        }
+
+        #loadMoreButton {
+            background-color: gray;
+            padding-left: 10%;
+            padding-right: 10%;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            color: white;
+            border: none;
+        }
+    </style>
+    <div class="loadmorediv">
+        <button id="loadMoreButton" onclick="loadMore()">Load more</button>
+    </div>
+
     {{ template "footer.html" .}}
+
+    <script>
+        var page = 1;
+        function loadMore() {
+            var e = document.getElementById("nextBatch");
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    e.outerHTML = xhr.responseText;
+                } else if (xhr.status == 404) {
+                    button = document.getElementById("loadMoreButton");
+                    button.style.display = 'none';
+                }
+            }
+            var path = "/index_more?page=" + page.toString();
+            xhr.open("GET", path, true);
+
+            try { xhr.send(); } catch (err) { /* handle error */ }
+
+            page = page + 1
+        }
+    </script>
+
 </body>
 
 </html>
