@@ -33,7 +33,16 @@ func toHTML(md_path, html_path string, md_content []byte) {
 
 	html_content := buf.Bytes()
 	html_content = replaceHtmlImage(md_path, html_content)
-	err := os.WriteFile(html_path, html_content, 0666)
+
+	_, err := os.Stat(html_path)
+	if !os.IsNotExist(err) {
+		err := os.Remove(html_path) // 删除后写入才能更新文件时间
+		if err != nil {
+			panic(err.Error())
+		}
+	}
+
+	err = os.WriteFile(html_path, html_content, 0666)
 	if err != nil {
 		log.Println(err.Error())
 	}

@@ -10,6 +10,8 @@ import (
 
 // clearExpiredHtml 清理过期的HTML文件
 func clearExpiredHtml(start_time time.Time) {
+	start_time = start_time.Add(-1 * time.Hour) // 补充时差避免误删除
+
 	dirs := []string{
 		constant.ArticlesHtmlPath,
 		constant.ImpressionsHtmlPath,
