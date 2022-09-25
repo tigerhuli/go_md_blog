@@ -4,7 +4,7 @@
 
 这是一个兴趣使然([for the fun of it](https://en.wikipedia.org/wiki/List_of_One-Punch_Man_characters#Saitama))的个人博客系统🤪, 使用[Gin](https://github.com/gin-gonic/gin)作为服务框架, 博客的主要内容以markdown组织, 示例网站: http://tigerhuli.com/.
 
-虽然有参考[HUGO](https://gohugo.io/)的项目结构, 但这是一个仍是一个非常定制化的博客网站, 有很多硬编码逻辑, 不适合直接使用🙅🏻‍♂️.
+虽然有参考[HUGO](https://gohugo.io/)的项目结构, 但这仍是一个非常定制化的博客网站, 有很多硬编码逻辑, 不适合直接使用🙅🏻‍♂️.
 
 该框架将尽量向非侵入式的目标靠拢. 非侵入的意思是, 框架和markdown文本是独立的, 不需要向框架进行"post"之类的操作. 使用时只需要指定一个目录, 由框架完成目录生成, 网页生成的工作. 这样的好处是, 可以比较自由地组织markdown文件.
 
