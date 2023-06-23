@@ -23,7 +23,7 @@ func Init() {
 		syncImpressions()
 		clearExpiredHtml(start_time)
 	}
-	job.AddFunc("0 0 * * *", cron_daily)
+	job.AddFunc("0 * * * *", cron_daily)
 	job.AddFunc("* * * * *", FlushPageView)
 	job.Start()
 }
